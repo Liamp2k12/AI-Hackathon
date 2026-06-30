@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OCR Field Extractor</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel">
+        <h1>OCR Field Extractor</h1>
+        <p>Upload an image and let the app read the text, then extract configured fields such as invoice number, date, amount, and customer name.</p>
+
+        <label class="upload-box" for="imageInput">
+          <span>Choose an image</span>
+          <input id="imageInput" type="file" accept="image/*" />
+        </label>
+
+        <div class="ai-controls">
+          <label class="field-label" for="apiKey">OpenAI-compatible API key (optional)</label>
+          <input id="apiKey" type="password" placeholder="sk-..." />
+
+          <label class="field-label" for="apiUrl">API endpoint</label>
+          <input id="apiUrl" type="text" value="https://api.openai.com/v1/chat/completions" />
+
+          <label class="field-label" for="model">Model</label>
+          <input id="model" type="text" value="gpt-4o-mini" />
+          <small>Leave the key blank to use the built-in regex fallback.</small>
+        </div>
+
+        <button id="extractBtn" type="button">Extract fields</button>
+
+        <div class="preview-card">
+          <h2>Image Preview</h2>
+          <img id="preview" alt="Uploaded preview" />
+        </div>
+      </section>
+
+      <section class="panel results-panel">
+        <h2>Recognized Fields</h2>
+        <div id="results" class="results-list"></div>
+
+        <div class="raw-text-card">
+          <h3>OCR Text</h3>
+          <pre id="rawText">No OCR result yet.</pre>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
